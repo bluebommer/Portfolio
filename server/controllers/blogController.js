@@ -17,3 +17,12 @@ export const addBlog = (req, res) => {
     res.json({ success: true, message: "Blog added!" });
   });
 };
+
+export const deleteBlog = (req, res) => {
+  const { id } = req.params;
+  
+  Blog.delete(id, (err) => {
+    if (err) return res.status(500).json({ error: "Delete failed" });
+    res.json({ success: true, message: "Blog deleted!" });
+  });
+};

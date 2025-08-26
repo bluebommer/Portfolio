@@ -1,17 +1,25 @@
-import { Router } from "express";
-import { getPortfolioItems, createPortfolioItem, deletePortfolioItem } from "../controllers/portfolioController.js";
-import upload from "../middleware/upload.js";  // for image uploads
-import authenticate from "../middleware/authenticate.js"; // restrict admin
+import express from "express";
+import multer from "multer";
+import path from "path";
+import { authenticate } from "../middleware/authMiddleware.js";
+import { addProject, getProjects, deleteProject } from "../controllers/projectController.js";
 
-const router = Router();
+const router = express.Router();
 
-// GET all portfolio items
-router.get("/", getPortfolioItems);
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "Uploads/"),
+  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname)),
+});
 
-// POST a new portfolio item (with image upload, only admin allowed)
-router.post("/", authenticate, upload.single("image"), createPortfolioItem);
+const upload = multer({ storage });
 
-// DELETE portfolio item
-router.delete("/:id", authenticate, deletePortfolioItem);
+router.get("/", getProjects);
+router.post(
+  "/",
+  authenticate,
+  upload.fields([{ name: "image", maxCount: 1 }, { name: "video", maxCount: 1 }]),
+  addProject
+);
+router.delete("/:id", authenticate, deleteProject);
 
 export default router;
