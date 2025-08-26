@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(45deg, #3b82f6, #8b5cf6);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Modal transition */
+        .modal {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        .modal-enter-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .modal-exit {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .modal-exit-active {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold gradient-text">Portfolio</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-indigo-600 transition">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
+                    <a href="#projects" class="text-gray-700 hover:text-indigo-600 transition">Projects</a>
+                    <a href="#blog" class="text-gray-700 hover:text-indigo-600 transition">Blog</a>
+                    <a href="#contact" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                    <button id="adminBtn" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition hidden">Admin</button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">About</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Projects</a>
+                <a href="#blog" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Blog</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Contact</a>
+                <button id="adminBtnMobile" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition hidden">Admin</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="animate-fadeIn">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Hi, I'm <span class="gradient-text">John Doe</span></h1>
+                <h2 class="text-2xl md:text-3xl font-semibold text-gray-600 mb-6">Full Stack Developer</h2>
+                <p class="text-gray-500 mb-8 max-w-lg">I build exceptional digital experiences that are fast, accessible, and visually appealing. Let's create something amazing together.</p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition shadow-md">Get In Touch</a>
+                    <a href="#projects" class="border border-indigo-600 text-indigo-600 px-6 py-3 rounded-md hover:bg-indigo-50 transition">View Work</a>
+                </div>
+            </div>
+            <div class="animate-fadeIn delay-200 flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-indigo-100 shadow-lg animate-float">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Profile" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">About <span class="gradient-text">Me</span></h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm card-hover animate-fadeIn delay-100">
+                    <div class="text-indigo-600 mb-4">
+                        <i class="fas fa-graduation-cap text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Education</h3>
+                    <p class="text-gray-600">Bachelor's in Computer Science from Stanford University with honors and multiple academic achievements.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm card-hover animate-fadeIn delay-200">
+                    <div class="text-indigo-600 mb-4">
+                        <i class="fas fa-briefcase text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Experience</h3>
+                    <p class="text-gray-600">5+ years of professional experience working with startups and Fortune 500 companies building scalable applications.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm card-hover animate-fadeIn delay-300">
+                    <div class="text-indigo-600 mb-4">
+                        <i class="fas fa-lightbulb text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Skills</h3>
+                    <p class="text-gray-600">Full stack development with expertise in React, Node.js, Python, and cloud technologies like AWS and Azure.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 grid md:grid-cols-2 gap-8 items-center">
+                <div class="animate-fadeIn delay-400">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">My Story</h3>
+                    <p class="text-gray-600 mb-4">I've been passionate about technology since childhood, building my first website at age 12. This passion led me to pursue computer science and eventually turn my hobby into a career.</p>
+                    <p class="text-gray-600">When I'm not coding, you can find me hiking, reading sci-fi novels, or experimenting with new cooking recipes.</p>
+                </div>
+                <div class="animate-fadeIn delay-500">
+                    <div class="bg-indigo-50 p-6 rounded-xl">
+                        <h4 class="text-lg font-semibold mb-4 text-gray-800">Technical Skills</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">JavaScript/TypeScript</span>
+                                    <span class="text-sm font-medium text-gray-500">95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">React/Next.js</span>
+                                    <span class="text-sm font-medium text-gray-500">90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Node.js</span>
+                                    <span class="text-sm font-medium text-gray-500">85%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">AWS/Cloud</span>
+                                    <span class="text-sm font-medium text-gray-500">80%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-indigo-600 h-2 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">My <span class="gradient-text">Projects</span></h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Here are some of my recent projects. Each one was carefully crafted to solve specific problems and deliver exceptional user experiences.</p>
+            
+            <div id="projectsContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects will be loaded here -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover animate-fadeIn delay-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Project 1" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4">A full-featured online store with payment processing, inventory management, and analytics dashboard.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">React</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Node.js</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover animate-fadeIn delay-200">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8b3885?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Project 2" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Task Management App</h3>
+                        <p class="text-gray-600 mb-4">A productivity application that helps teams collaborate and manage projects efficiently with real-time updates.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Vue.js</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Firebase</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover animate-fadeIn delay-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Project 3" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Health Analytics Dashboard</h3>
+                        <p class="text-gray-600 mb-4">A data visualization platform for healthcare providers to track patient metrics and treatment outcomes.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">D3.js</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Flask</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 animate-fadeIn delay-400">
+                <button class="border border-indigo-600 text-indigo-600 px-6 py-3 rounded-md hover:bg-indigo-50 transition">View All Projects</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Latest <span class="gradient-text">Blog</span> Posts</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">I share my thoughts on technology, development best practices, and industry trends.</p>
+            
+            <div id="blogContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog posts will be loaded here -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md card-hover animate-fadeIn delay-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Blog 1" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>June 15, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">The Future of Web Development in 2023</h3>
+                        <p class="text-gray-600 mb-4">Exploring the emerging trends and technologies that will shape web development in the coming year.</p>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 transition">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md card-hover animate-fadeIn delay-200">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Blog 2" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>May 28, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>8 min read</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Optimizing React Performance</h3>
+                        <p class="text-gray-600 mb-4">Practical techniques to improve your React application's performance and user experience.</p>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 transition">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md card-hover animate-fadeIn delay-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Blog 3" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>April 10, 2023</span>
+                            <span class="mx-2">•</span>
+                            <span>6 min read</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Building Scalable APIs with Node.js</h3>
+                        <p class="text-gray-600 mb-4">Architecture patterns and best practices for creating robust and scalable backend services.</p>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 transition">Read More →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 animate-fadeIn delay-400">
+                <button class="border border-indigo-600 text-indigo-600 px-6 py-3 rounded-md hover:bg-indigo-50 transition">View All Posts</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Get In <span class="gradient-text">Touch</span></h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Have a project in mind or want to discuss potential opportunities? Feel free to reach out!</p>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="animate-fadeIn delay-100">
+                    <div class="bg-white p-8 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-semibold mb-6 text-gray-800">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-500 mb-1">Email</h4>
+                                    <a href="mailto:hello@example.com" class="text-gray-800 hover:text-indigo-600 transition">hello@example.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-500 mb-1">Phone</h4>
+                                    <a href="tel:+1234567890" class="text-gray-800 hover:text-indigo-600 transition">+1 (234) 567-890</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-500 mb-1">Location</h4>
+                                    <p class="text-gray-800">San Francisco, CA</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="text-lg font-medium mb-4 text-gray-800">Connect with me</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 transition">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="bg-gray-100 p-3 rounded-full text-gray-700 hover:bg-indigo-100 hover:text-indigo-600 transition">
+                                    <i class="fab fa-dribbble"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="animate-fadeIn delay-200">
+                    <div class="bg-white p-8 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-semibold mb-6 text-gray-800">Send Me a Message</h3>
+                        
+                        <form id="contactForm" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition shadow-md">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Portfolio</h3>
+                    <p class="text-gray-400">Creating digital experiences that inspire and deliver results.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition">Projects</a></li>
+                        <li><a href="#blog" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Web Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Mobile Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">UI/UX Design</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Consulting</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe to my newsletter for the latest updates and articles.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md w-full text-gray-800 outline-none">
+                        <button type="submit" class="bg-indigo-600 px-4 py-2 rounded-r-md hover:bg-indigo-700 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">© 2023 My Portfolio. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-dribbble"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 w-full max-w-md relative modal">
+            <button id="closeLoginModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Admin Login</h2>
+            
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <input type="text" id="username" name="username" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                </div>
+                
+                <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition shadow-md">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="fixed inset-0 bg-gray-100 z-50 overflow-y-auto hidden">
+        <div class="min-h-screen">
+            <!-- Admin Header -->
+            <header class="bg-white shadow-sm">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16 items-center">
+                        <div class="flex items-center">
+                            <h1 class="text-xl font-bold text-gray-800">Admin Panel</h1>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button id="logoutBtn" class="text-gray-700 hover:text-indigo-600 transition">Logout</button>
+                            <button id="closeAdminPanel" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Close Panel</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Admin Content -->
+            <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Add Project -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <h2 class="text-xl font-semibold mb-4 text-gray-800">Add New Project</h2>
+                        
+                        <form id="addProjectForm" class="space-y-4">
+                            <div>
+                                <label for="projectTitle" class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                                <input type="text" id="projectTitle" name="projectTitle" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="projectDescription" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                <textarea id="projectDescription" name="projectDescription" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label for="projectImage" class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                                <input type="text" id="projectImage" name="projectImage" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="projectTags" class="block text-sm font-medium text-gray-700 mb-1">Tags (comma separated)</label>
+                                <input type="text" id="projectTags" name="projectTags" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Add Project</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Add Blog Post -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <h2 class="text-xl font-semibold mb-4 text-gray-800">Add New Blog Post</h2>
+                        
+                        <form id="addBlogForm" class="space-y-4">
+                            <div>
+                                <label for="blogTitle" class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                                <input type="text" id="blogTitle" name="blogTitle" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="blogDate" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                                <input type="date" id="blogDate" name="blogDate" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="blogReadTime" class="block text-sm font-medium text-gray-700 mb-1">Read Time</label>
+                                <input type="text" id="blogReadTime" name="blogReadTime" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="blogImage" class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                                <input type="text" id="blogImage" name="blogImage" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            </div>
+                            
+                            <div>
+                                <label for="blogContent" class="block text-sm font-medium text-gray-700 mb-1">Content Preview</label>
+                                <textarea id="blogContent" name="blogContent" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Add Blog Post</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Manage Content -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <h2 class="text-xl font-semibold mb-4 text-gray-800">Manage Content</h2>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <h3 class="font-medium text-gray-700 mb-2">Projects</h3>
+                                <div id="projectsList" class="space-y-2 max-h-40 overflow-y-auto p-2 bg-gray-50 rounded-md">
+                                    <!-- Projects will be listed here -->
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="font-medium text-gray-700 mb-2">Blog Posts</h3>
+                                <div id="blogList" class="space-y-2 max-h-40 overflow-y-auto p-2 bg-gray-50 rounded-md">
+                                    <!-- Blog posts will be listed here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Success Notification -->
+    <div id="successNotification" class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-md shadow-lg flex items-center hidden z-50">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span id="successMessage">Operation completed successfully!</span>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Admin button (will be shown after login)
+        const adminBtn = document.getElementById('adminBtn');
+        const adminBtnMobile = document.getElementById('adminBtnMobile');
+        
+        // Login modal
+        const loginModal = document.getElementById('loginModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const loginForm = document.getElementById('loginForm');
+        
+        // Admin panel
+        const adminPanel = document.getElementById('adminPanel');
+        const closeAdminPanel = document.getElementById('closeAdminPanel');
+        const logoutBtn = document.getElementById('logoutBtn');
+        
+        // Forms
+        const contactForm = document.getElementById('contactForm');
+        const addProjectForm = document.getElementById('addProjectForm');
+        const addBlogForm = document.getElementById('addBlogForm');
+        
+        // Notification
+        const successNotification = document.getElementById('successNotification');
+        const successMessage = document.getElementById('successMessage');
+        
+        // Sample data storage (in a real app, this would be server-side)
+        let projects = [
+            {
+                title: "E-commerce Platform",
+                description: "A full-featured online store with payment processing, inventory management, and analytics dashboard.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                tags: ["React", "Node.js", "MongoDB"]
+            },
+            {
+                title: "Task Management App",
+                description: "A productivity application that helps teams collaborate and manage projects efficiently with real-time updates.",
+                image: "https://images.unsplash.com/photo-1467232004584-a241de8b3885?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80",
+                tags: ["Vue.js", "Firebase", "Tailwind"]
+            },
+            {
+                title: "Health Analytics Dashboard",
+                description: "A data visualization platform for healthcare providers to track patient metrics and treatment outcomes.",
+                image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                tags: ["D3.js", "Python", "Flask"]
+            }
+        ];
+        
+        let blogPosts = [
+            {
+                title: "The Future of Web Development in 2023",
+                date: "June 15, 2023",
+                readTime: "5 min read",
+                image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+                content: "Exploring the emerging trends and technologies that will shape web development in the coming year."
+            },
+            {
+                title: "Optimizing React Performance",
+                date: "May 28, 2023",
+                readTime: "8 min read",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
+                content: "Practical techniques to improve your React application's performance and user experience."
+            },
+            {
+                title: "Building Scalable APIs with Node.js",
+                date: "April 10, 2023",
+                readTime: "6 min read",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                content: "Architecture patterns and best practices for creating robust and scalable backend services."
+            }
+        ];
+        
+        // Check if user is logged in (in a real app, this would check a token or session)
+        let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        
+        if (isLoggedIn) {
+            adminBtn.classList.remove('hidden');
+            adminBtnMobile.classList.remove('hidden');
+        }
+        
+        // Show admin login modal
+        function showAdminLogin() {
+            loginModal.classList.remove('hidden');
+        }
+        
+        // Hide admin login modal
+        function hideAdminLogin() {
+            loginModal.classList.add('hidden');
+        }
+        
+        // Show admin panel
+        function showAdminPanel() {
+            adminPanel.classList.remove('hidden');
+            renderProjectsList();
+            renderBlogList();
+        }
+        
+        // Hide admin panel
+        function hideAdminPanel() {
+            adminPanel.classList.add('hidden');
+        }
+        
+        // Login function
+        function login(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // In a real app, this would be an API call to verify credentials
+            if (username === 'admin' && password === 'admin123') {
+                localStorage.setItem('isLoggedIn', 'true');
+                isLoggedIn = true;
+                adminBtn.classList.remove('hidden');
+                adminBtnMobile.classList.remove('hidden');
+                hideAdminLogin();
+                showAdminPanel();
+                showSuccessNotification('Logged in successfully!');
+            } else {
+                alert('Invalid credentials. Try admin/admin123');
+            }
+        }
+        
+        // Logout function
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            isLoggedIn = false;
+            adminBtn.classList.add('hidden');
+            adminBtnMobile.classList.add('hidden');
+            hideAdminPanel();
+            showSuccessNotification('Logged out successfully!');
+        }
+        
+        // Show success notification
+        function showSuccessNotification(message) {
+            successMessage.textContent = message;
+            successNotification.classList.remove('hidden');
+            
+            setTimeout(() => {
+                successNotification.classList.add('hidden');
+            }, 3000);
+        }
+        
+        // Render projects list in admin panel
+        function renderProjectsList() {
+            const projectsList = document.getElementById('projectsList');
+            projectsList.innerHTML = '';
+            
+            projects.forEach((project, index) => {
+                const projectElement = document.createElement('div');
+                projectElement.className = 'flex justify-between items-center bg-white p-2 rounded';
+                projectElement.innerHTML = `
+                    <span class="truncate">${project.title}</span>
+                    <button onclick="deleteProject(${index})" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                projectsList.appendChild(projectElement);
+            });
+        }
+        
+        // Render blog list in admin panel
+        function renderBlogList() {
+            const blogList = document.getElementById('blogList');
+            blogList.innerHTML = '';
+            
+            blogPosts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.className = 'flex justify-between items-center bg-white p-2 rounded';
+                postElement.innerHTML = `
+                    <span class="truncate">${post.title}</span>
+                    <button onclick="deleteBlogPost(${index})" class="text-red-500 hover:text-red-700">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                blogList.appendChild(postElement);
+            });
+        }
+        
+        // Delete project
+        function deleteProject(index) {
+            if (confirm('Are you sure you want to delete this project?')) {
+                projects.splice(index, 1);
+                renderProjectsList();
+                renderProjects();
+                showSuccessNotification('Project deleted successfully!');
+            }
+        }
+        
+        // Delete blog post
+        function deleteBlogPost(index) {
+            if (confirm('Are you sure you want to delete this blog post?')) {
+                blogPosts.splice(index, 1);
+                renderBlogList();
+                renderBlogPosts();
+                showSuccessNotification('Blog post deleted successfully!');
+            }
+        }
+        
+        // Add new project
+        function addProject(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('projectTitle').value;
+            const description = document.getElementById('projectDescription').value;
+            const image = document.getElementById('projectImage').value;
+            const tags = document.getElementById('projectTags').value.split(',').map(tag => tag.trim());
+            
+            if (!title || !description || !image) {
+                alert('Please fill all required fields');
+                return;
+            }
+            
+            projects.unshift({
+                title,
+                description,
+                image,
+                tags
+            });
+            
+            document.getElementById('addProjectForm').reset();
+            renderProjectsList();
+            renderProjects();
+            showSuccessNotification('Project added successfully!');
+        }
+        
+        // Add new blog post
+        function addBlogPost(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('blogTitle').value;
+            const date = document.getElementById('blogDate').value;
+            const readTime = document.getElementById('blogReadTime').value;
+            const image = document.getElementById('blogImage').value;
+            const content = document.getElementById('blogContent').value;
+            
+            if (!title || !date || !readTime || !image || !content) {
+                alert('Please fill all required fields');
+                return;
+            }
+            
+            // Format date
+            const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            blogPosts.unshift({
+                title,
+                date: formattedDate,
+                readTime,
+                image,
+                content
+            });
+            
+            document.getElementById('addBlogForm').reset();
+            renderBlogList();
+            renderBlogPosts();
+            showSuccessNotification('Blog post added successfully!');
+        }
+        
+        // Render projects on page
+        function renderProjects() {
+            const container = document.getElementById('projectsContainer');
+            container.innerHTML = '';
+            
+            projects.forEach((project, index) => {
+                const projectElement = document.createElement('div');
+                projectElement.className = 'bg-white rounded-xl overflow-hidden shadow-md card-hover animate-fadeIn';
+                projectElement.style.animationDelay = `${(index % 3) * 0.1 + 0.1}s`;
+                projectElement.innerHTML = `
+                    <div class="h-48 overflow-hidden">
+                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">${project.title}</h3>
+                        <p class="text-gray-600 mb-4">${project.description}</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${project.tags.map(tag => `<span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(projectElement);
+            });
+        }
+        
+        // Render blog posts on page
+        function renderBlogPosts() {
+            const container = document.getElementById('blogContainer');
+            container.innerHTML = '';
+            
+            blogPosts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.className = 'bg-gray-50 rounded-xl overflow-hidden shadow-md card-hover animate-fadeIn';
+                postElement.style.animationDelay = `${(index % 3) * 0.1 + 0.1}s`;
+                postElement.innerHTML = `
+                    <div class="h-48 overflow-hidden">
+                        <img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span>${post.date}</span>
+                            <span class="mx-2">•</span>
+                            <span>${post.readTime}</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">${post.title}</h3>
+                        <p class="text-gray-600 mb-4">${post.content}</p>
+                        <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 transition">Read More →</a>
+                    </div>
+                `;
+                container.appendChild(postElement);
+            });
+        }
+        
+        // Event listeners
+        adminBtn.addEventListener('click', showAdminLogin);
+        adminBtnMobile.addEventListener('click', showAdminLogin);
+        closeLoginModal.addEventListener('click', hideAdminLogin);
+        loginForm.addEventListener('submit', login);
+        closeAdminPanel.addEventListener('click', hideAdminPanel);
+        logoutBtn.addEventListener('click', logout);
+        addProjectForm.addEventListener('submit', addProject);
+        addBlogForm.addEventListener('submit', addBlogPost);
+        
+        // Contact form submission
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            showSuccessNotification('Message sent successfully!');
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Initialize
+        renderProjects();
+        renderBlogPosts();
+    </script>
+</body>
+</html>

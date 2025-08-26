@@ -1,0 +1,9 @@
+POST http://localhost:3737/api/data
+Content-Type: application/json
+
+{
+    "name": "glimpse"
+}
+
+###DELETE ENDPOINT
+DELETE  http://localhost:3737/api/data
