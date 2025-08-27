@@ -21,9 +21,9 @@ const About = () => (
             </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 {[
-                    { title: 'Education', desc: "Bachelor's in Computer Science from Stanford University with honors and multiple academic achievements.", img: Project },
-                    { title: 'Experience', desc: '5+ years of professional experience working with startups and Fortune 500 companies building scalable applications.', img: Project },
-                    { title: 'Skills', desc: 'Full stack development with expertise in React, Node.js, Python, and cloud technologies like AWS and Azure.', img: Project }
+                    { title: 'Education', desc: "Bachelor's in Computer Science from Olusegun Agagu University with honors and multiple academic achievements.", img: Project },
+                    { title: 'Experience', desc: '2+ years of professional experience working with different clients and teams', img: Project },
+                    { title: 'Skills', desc: 'Front End development with expertise in React, Node.js, JavaScript, Tailwind and other technologies .', img: Project }
                 ].map(({ title, desc, img }, index) => (
                     <motion.div
                         key={title}
@@ -32,7 +32,7 @@ const About = () => (
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 * index, duration: 0.5, type: "spring" }}
                     >
-                        <img src={img} alt={title} className="mx-auto mb-4 w-24 h-24 object-cover rounded" />
+                        <img src={img} alt={title} className="mx-auto mb-4 w-48 h-48 object-cover rounded" />
                         <h3 className="text-xl font-semibold">{title}</h3>
                         <p>{desc}</p>
                     </motion.div>
@@ -46,7 +46,7 @@ const About = () => (
             >
                 <h3 className="text-2xl font-semibold mb-4">My Story</h3>
                 <p className="max-w-2xl mx-auto">
-                    I've been passionate about technology since childhood, building my first website at age 12. This passion led me to pursue computer science and eventually turn my hobby into a career. When I'm not coding, you can find me hiking, reading sci-fi novels, or experimenting with new cooking recipes.
+                    I've been passionate about technology since childhood, building my first website at age 18. This passion led me to pursue computer science and eventually turn my hobby into a career. When I'm not coding, you can find me playing chess, playing keyboard, reading sci-fi or psychological novels.
                 </p>
             </motion.div>
             <div>
@@ -63,7 +63,7 @@ const About = () => (
                         { skill: 'JavaScript/TypeScript', percent: 95 },
                         { skill: 'React/Next.js', percent: 90 },
                         { skill: 'Node.js', percent: 85 },
-                        { skill: 'AWS/Cloud', percent: 80 }
+                        { skill: 'Tailwind', percent: 90 }
                     ].map(({ skill, percent }, index) => (
                         <motion.div
                             key={skill}

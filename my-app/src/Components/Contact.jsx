@@ -55,9 +55,9 @@ const Contact = () => {
                     <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
                     <div className="space-y-4">
                         {[
-                            { icon: 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z', label: 'Email', value: 'hello@example.com' },
-                            { icon: 'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 11c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z', label: 'Phone', value: '+1 (234) 567-890' },
-                            { icon: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z', label: 'Location', value: 'San Francisco, CA' }
+                            { icon: 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z', label: 'Email', value: 'oluwayemitunmise6@gmail.com' },
+                            { icon: 'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 11c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z', label: 'WhatsApp', value: '+2348106123551' },
+                            { icon: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z', label: 'Location', value: 'Lagos , Nigeria' }
                         ].map(({ icon, label, value }, index) => (
                             <motion.div
                                 key={label}
@@ -73,7 +73,7 @@ const Contact = () => {
                     </div>
                     <h3 className="text-xl font-semibold mt-6 mb-4">Connect with me</h3>
                     <div className="flex space-x-4">
-                        {['facebook', 'twitter', 'linkedin', 'github'].map((platform, index) => (
+                        {['WhatsApp', 'twitter', 'linkedin', 'github'].map((platform, index) => (
                             <motion.a
                                 key={platform}
                                 href="#"

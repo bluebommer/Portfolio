@@ -49,7 +49,7 @@ const Footer = () => (
             >
                 <h3 className="text-xl font-semibold mb-4">Services</h3>
                 <ul className="space-y-2">
-                    {['Web Development', 'Mobile Development', 'UI/UX Design', 'Consulting'].map((service, index) => (
+                    {['Web Development', 'UI/UX Design', 'Consulting'].map((service, index) => (
                         <motion.li
                             key={service}
                             initial={{ opacity: 0, x: -20 }}
@@ -94,9 +94,9 @@ const Footer = () => (
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
         >
-            <p>© 2023 My Portfolio. All rights reserved.</p>
+            <p>© 2025 My Portfolio. All rights reserved.</p>
             <div className="flex justify-center space-x-4 mt-4">
-                {['facebook', 'twitter', 'linkedin', 'github'].map((platform, index) => (
+                {['WhatsApp', 'Twitter', 'Linkedin', 'Github'].map((platform, index) => (
                     <motion.a
                         key={platform}
                         href="#"
