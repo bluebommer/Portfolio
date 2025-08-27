@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import Project from '../assets/type.jpg';
+import Project from '../assets/skils.jpg';
+import Edu from '../assets/education.jpg';
+import Exp from '../assets/exp.jpg';
 
 const About = () => (
     <motion.section
@@ -21,8 +23,8 @@ const About = () => (
             </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 {[
-                    { title: 'Education', desc: "Bachelor's in Computer Science from Olusegun Agagu University with honors and multiple academic achievements.", img: Project },
-                    { title: 'Experience', desc: '2+ years of professional experience working with different clients and teams', img: Project },
+                    { title: 'Education', desc: "Bachelor's in Computer Science from Olusegun Agagu University with honors and multiple academic achievements.", img: Edu },
+                    { title: 'Experience', desc: '2+ years of professional experience working with different clients and teams', img: Exp },
                     { title: 'Skills', desc: 'Front End development with expertise in React, Node.js, JavaScript, Tailwind and other technologies .', img: Project }
                 ].map(({ title, desc, img }, index) => (
                     <motion.div
@@ -32,7 +34,7 @@ const About = () => (
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 * index, duration: 0.5, type: "spring" }}
                     >
-                        <img src={img} alt={title} className="mx-auto mb-4 w-48 h-48 object-cover rounded" />
+                        <img src={img} alt={title} className="mx-auto mb-4 w-90 h-64 object-cover rounded" />
                         <h3 className="text-xl font-semibold">{title}</h3>
                         <p>{desc}</p>
                     </motion.div>
