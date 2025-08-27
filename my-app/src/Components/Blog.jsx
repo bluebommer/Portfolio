@@ -7,7 +7,7 @@ const Blog = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/blogs")
+    axios.get("https://portfolio-c98r.onrender.com/blogs")
       .then(res => setBlogs(res.data))
       .catch(err => console.error("Error fetching blogs:", err));
   }, []);

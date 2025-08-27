@@ -11,7 +11,7 @@ const BlogPostCard = ({ date, readTime, title, description, image }) => (
         whileHover={{ scale: 1.02, boxShadow: '0 10px 20px rgba(0,0,0,0.1)' }}
     >
         <img
-            src={image ? `http://localhost:5000${image}` : DefaultProject}
+            src={image ? `https://portfolio-c98r.onrender.com${image}` : DefaultProject}
             alt={title}
             className="w-full h-48 object-cover mb-4 rounded"
         />

@@ -26,7 +26,7 @@ const Admin = () => {
     const token = localStorage.getItem("token");
     if (token) {
       // Verify token is still valid by making a test request
-      axios.get("http://localhost:5000/projects", {
+      axios.get("https://portfolio-c98r.onrender.com/projects", {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(() => {
@@ -52,7 +52,7 @@ const Admin = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/projects");
+      const res = await axios.get("https://portfolio-c98r.onrender.com/projects");
       setProjects(res.data);
     } catch (err) {
       console.error("Error fetching projects:", err);
@@ -61,7 +61,7 @@ const Admin = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/blogs");
+      const res = await axios.get("https://portfolio-c98r.onrender.com/blogs");
       setBlogs(res.data);
     } catch (err) {
       console.error("Error fetching blogs:", err);
@@ -79,7 +79,7 @@ const Admin = () => {
     setLoginError("");
     
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", loginForm);
+      const res = await axios.post("https://portfolio-c98r.onrender.com/auth/login", loginForm);
       localStorage.setItem("token", res.data.token);
       setIsLoggedIn(true);
       setLoginForm({ username: "", password: "" });
@@ -113,7 +113,7 @@ const Admin = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       };
 
-      await axios.post(`http://localhost:5000${endpoint}`, form, config);
+      await axios.post(`https://portfolio-c98r.onrender.com${endpoint}`, form, config);
       
       // Refresh the lists
       if (tab === "projects") {
@@ -139,7 +139,7 @@ const Admin = () => {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       };
 
-      await axios.delete(`http://localhost:5000${endpoint}/${id}`, config);
+      await axios.delete(`https://portfolio-c98r.onrender.com${endpoint}/${id}`, config);
       
       if (type === "project") {
         setProjects(projects.filter(p => p.id !== id));
@@ -419,7 +419,7 @@ const Admin = () => {
               >
                 {item.image && (
                   <img
-                    src={item.image.startsWith('http') ? item.image : `http://localhost:5000${item.image}`}
+                    src={item.image.startsWith('http') ? item.image : `https://portfolio-c98r.onrender.com${item.image}`}
                     alt={item.title}
                     className="w-full h-48 object-cover"
                   />
